@@ -1,2 +1,0 @@
-# Acupuncture_Traditional_Chinese_Medicine_Clinic
-Automated website repository for Acupuncture_Traditional_Chinese_Medicine_Clinic
