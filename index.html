@@ -86,7 +86,7 @@
           }
         }
     </style>
-    <link rel="icon" type="image/jpeg" href="images/tcm_logo_new.jpg">
+    <link rel="icon" type="image/jpeg" href="images/tcm_logo_v2.jpg">
 </head>
 
 <body
@@ -98,11 +98,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img class="h-10 w-auto rounded-md object-cover" src="images/tcm_logo_new.jpg"
+                    <img class="h-10 w-auto rounded-md object-cover" src="images/tcm_logo_v2.jpg"
                         alt="Harmony TCM Logo">
-                    <span class="font-display font-semibold text-2xl tracking-wide">Harmony TCM</span>
+                    <span class="font-display font-semibold text-2xl tracking-wide whitespace-nowrap">Harmony TCM</span>
                 </a>
-                <nav class="hidden md:flex space-x-6 items-center">
+                <nav class="hidden xl:flex space-x-6 items-center">
                     <a href="index.html" class="nav-link active">Home</a>
                     <a href="home-2.html" class="nav-link">Home 2</a>
                     <a href="about.html" class="nav-link">About</a>
@@ -110,31 +110,26 @@
                     <a href="blog.html" class="nav-link">Blog</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                     <a href="dashboard.html" class="nav-link">Dashboard</a>
-                    <div class="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-700 pl-6 ml-2">
-                        <div
-                            class="flex items-center gap-1 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-1">
-                            <button id="theme-toggle"
-                                class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                                aria-label="Toggle Theme">
-                                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                                    </path>
-                                </svg>
-                                <svg class="w-5 h-5 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                                    </path>
-                                </svg>
-                            </button>
-                            <button id="rtl-toggle"
-                                class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-semibold tracking-wider">RTL</button>
-                        </div>
-                        <a href="signup.html" class="btn-primary py-2 px-5 text-sm">Sign Up</a>
-                    </div>
+                                          <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-6 ml-2">
+                          <button id="theme-toggle" class="theme-toggle w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                              aria-label="Toggle Theme">
+                              <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                                  </path>
+                              </svg>
+                              <svg class="w-5 h-5 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor"
+                                  viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                                  </path>
+                              </svg>
+                          </button>
+                          <button id="rtl-toggle" class="rtl-toggle w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-semibold tracking-wider">RTL</button>
+                          <a href="signup.html" class="btn-primary py-2 px-5 text-sm ml-2">Sign Up</a>
+                      </div>
                 </nav>
-                <div class="md:hidden flex items-center">
+                <div class="xl:hidden flex items-center">
                     <button id="mobile-menu-btn"
                         class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,7 +141,7 @@
             </div>
         </div>
         <div id="mobile-menu"
-            class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+            class="hidden xl:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html"
                     class="block px-3 py-2 rounded-md text-base font-medium text-tcm-terracotta bg-gray-50 dark:bg-gray-800">Home</a>
@@ -163,9 +158,20 @@
                     class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Contact</a>
                 <a href="dashboard.html"
                     class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Dashboard</a>
-                <div class="mt-4 flex gap-4 px-3 py-2">
-                    <a href="signup.html" class="btn-primary w-full text-center py-3">Sign Up</a>
-                </div>
+                                  <div class="mt-4 flex flex-col gap-4 px-3 py-2">
+                      <div class="flex gap-4">
+                          <button class="theme-toggle flex-1 py-2 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Theme">
+                              <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                              </svg>
+                              <svg class="w-5 h-5 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                              </svg>
+                          </button>
+                          <button class="rtl-toggle flex-1 py-2 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-semibold tracking-wider">RTL</button>
+                      </div>
+                      <a href="signup.html" class="btn-primary w-full text-center py-3">Sign Up</a>
+                  </div>
             </div>
         </div>
     </header>
@@ -175,7 +181,7 @@
         <section class="relative bg-tcm-sand dark:bg-gray-900 overflow-hidden">
             <div class="max-w-7xl mx-auto">
                 <div
-                    class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8">
+                    class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-lg xl:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8">
                     <div class="sm:text-center lg:text-left fade-in-up">
                         <span
                             class="text-tcm-terracotta font-medium tracking-wider uppercase text-sm mb-4 block">Holistic
@@ -211,7 +217,7 @@
                 </div>
             </div>
             <div
-                class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 mt-10 lg:mt-0 p-4 lg:p-10 flex items-center justify-center">
+                class="lg:absolute lg:inset-y-0 ltr:lg:right-0 rtl:lg:left-0 lg:w-1/2 mt-10 lg:mt-0 p-4 lg:p-10 flex items-center justify-center">
                 <img class="h-96 w-full object-cover sm:h-72 md:h-96 lg:h-full rounded-2xl shadow-2xl rounded-tl-[100px] rounded-br-[100px]"
                     src="images/tcm_hero_1_1789906976315.jpg" alt="Premium holistic clinic interior">
             </div>
@@ -230,7 +236,7 @@
                         <img src="images/herbal_medicine_1789907005432.jpg" alt="Traditional Herbal Medicine"
                             class="rounded-[2rem] shadow-xl w-full object-cover h-[500px]">
                         <div
-                            class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+                            class="absolute -bottom-6 right-4 md:-right-6 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
                             <p class="font-display text-lg font-medium text-tcm-terracotta">Pure Ingredients</p>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Sustainably sourced herbs.</p>
                         </div>
@@ -300,7 +306,7 @@
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
-                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors">
+                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors min-h-[3.5rem]">
                                 Acupuncture</h3>
                             <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 font-light mb-4">Painless,
                                 ultra-fine needles to rebalance the nervous system and promote systemic healing.</p>
@@ -323,7 +329,7 @@
                                 class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
-                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors">
+                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors min-h-[3.5rem]">
                                 Cupping Therapy</h3>
                             <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 font-light mb-4">Negative pressure
                                 therapy to release fascial adhesions and enhance localized blood flow.</p>
@@ -344,7 +350,7 @@
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
-                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors">
+                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors min-h-[3.5rem]">
                                 Herbal Medicine</h3>
                             <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 font-light mb-4">Bespoke botanical
                                 prescriptions designed to address complex internal disharmonies over time.</p>
@@ -367,7 +373,7 @@
                                 class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
-                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors">
+                            <h3 class="text-xl font-display mb-2 group-hover:text-tcm-terracotta transition-colors min-h-[3.5rem]">
                                 Wellness Consultation</h3>
                             <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 font-light mb-4">In-depth
                                 diagnostics including pulse and tongue analysis to craft your personalized treatment
@@ -476,11 +482,9 @@
                 <!-- Brand -->
                 <div>
                     <a href="index.html" class="flex items-center gap-3 mb-6">
-                        <img class="h-10 w-auto rounded-sm object-cover" src="images/tcm_logo_new.jpg"
+                        <img class="h-10 w-auto rounded-sm object-cover" src="images/tcm_logo_v2.jpg"
                             alt="Harmony TCM Logo">
-                        <span
-                            class="font-display font-semibold text-2xl tracking-wide text-tcm-charcoal dark:text-white">Harmony
-                            TCM</span>
+                        <span class="font-display font-semibold text-2xl tracking-wide text-tcm-charcoal dark:text-white whitespace-nowrap">Harmony TCM</span>
                     </a>
                     <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-6">
                         An international standard of Traditional Chinese Medicine, dedicated to uncovering the root of

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Theme Toggle
-    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
     const htmlElement = document.documentElement;
 
     // Check for saved theme or system preference
@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         htmlElement.classList.add('dark');
     }
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
             if (htmlElement.classList.contains('dark')) {
                 localStorage.setItem('theme', 'dark');
@@ -17,23 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('theme', 'light');
             }
         });
-    }
+    });
 
     // 2. RTL Toggle
-    const rtlToggleBtn = document.getElementById('rtl-toggle');
+    const rtlToggleBtns = document.querySelectorAll('.rtl-toggle');
     
     // Check saved direction
     const savedDir = localStorage.getItem('dir') || 'ltr';
     htmlElement.setAttribute('dir', savedDir);
 
-    if (rtlToggleBtn) {
-        rtlToggleBtn.addEventListener('click', () => {
+    rtlToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             const currentDir = htmlElement.getAttribute('dir');
             const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
             htmlElement.setAttribute('dir', newDir);
             localStorage.setItem('dir', newDir);
         });
-    }
+    });
 
     // 3. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
