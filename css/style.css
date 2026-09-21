@@ -33,3 +33,13 @@ html.dark ::-webkit-scrollbar-thumb {
     transform: translateY(0);
   }
 }
+
+/* Brighten paragraph text in dark mode */
+html.dark p.dark\:text-gray-400 {
+  color: #D1D5DB; /* gray-300 */
+}
+
+/* Brighten footer links in dark mode */
+html.dark footer a.text-gray-500 {
+  color: #9CA3AF; /* gray-400 */
+}
