@@ -65,11 +65,20 @@
     <header class="fixed w-full top-0 z-50 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img class="h-8 w-auto rounded-md object-cover" src="images/tcm_logo_v2.jpg" alt="Harmony TCM Logo">
-                    <span class="font-display font-semibold text-xl">Harmony TCM</span>
-                </a>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-3">
+                    <!-- Mobile Hamburger Menu Button (Left Side) -->
+                    <button id="dashboard-mobile-menu-btn" class="md:hidden p-2 -ml-2 rounded-lg text-tcm-charcoal dark:text-tcm-sand hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-tcm-sage/30 transition-colors" aria-label="Open Navigation Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img class="h-8 w-auto rounded-md object-cover" src="images/tcm_logo_v2.jpg" alt="Harmony TCM Logo">
+                        <span class="font-display font-semibold text-xl">Harmony TCM</span>
+                    </a>
+                </div>
+                <!-- Header Controls (Desktop) -->
+                <div class="hidden md:flex items-center gap-2">
                     <button id="theme-toggle" class="theme-toggle w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Theme">
                         <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -85,17 +94,153 @@
         </div>
     </header>
 
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div id="dashboard-sidebar-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300 md:hidden" aria-hidden="true"></div>
+
+    <!-- Mobile Navigation Drawer (Left Side) -->
+    <aside id="dashboard-sidebar-mobile" class="fixed top-0 bottom-0 ltr:left-0 rtl:right-0 w-72 max-w-[85vw] bg-white dark:bg-gray-800 z-50 shadow-2xl ltr:-translate-x-full rtl:translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
+        <!-- Mobile Drawer Header -->
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-tcm-sage text-white flex items-center justify-center font-semibold text-sm">SJ</div>
+                <div>
+                    <p class="font-medium text-sm leading-tight text-tcm-charcoal dark:text-white">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Patient Portal</p>
+                </div>
+            </div>
+            <button id="dashboard-mobile-close-btn" class="p-2 rounded-lg text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Close Menu">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Links -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-6 flex flex-col justify-between">
+            <!-- Portal Headings / Tabs with Icons -->
+            <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 px-3 mb-2">Portal Navigation</h3>
+                <nav class="space-y-1">
+                    <a href="#" data-target="overview" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg bg-tcm-sand dark:bg-gray-700 text-tcm-charcoal dark:text-white font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#" data-target="appointments" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300 font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Appointments</span>
+                    </a>
+                    <a href="#" data-target="progress" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300 font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Treatment Progress</span>
+                    </a>
+                    <a href="#" data-target="herbs" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300 font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                        <span>Herbal Prescriptions</span>
+                    </a>
+                    <a href="#" data-target="history" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300 font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Session History</span>
+                    </a>
+                    <a href="#" data-target="payments" class="dash-tab flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300 font-medium">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                        </svg>
+                        <span>Payments</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Preferences (Theme Toggle & RTL Controls inside Mobile Drawer) and Logout -->
+            <div class="space-y-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 px-3 mb-2.5">Preferences</p>
+                    <div class="flex items-center gap-2 px-1">
+                        <!-- Theme Toggle Button -->
+                        <button class="theme-toggle flex-1 py-2 px-3 flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm font-medium text-tcm-charcoal dark:text-white" aria-label="Toggle Theme">
+                            <svg class="w-4 h-4 dark:hidden text-tcm-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                            <svg class="w-4 h-4 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            <span>Theme</span>
+                        </button>
+                        <!-- RTL Toggle Button -->
+                        <button class="rtl-toggle flex-1 py-2 px-3 flex items-center justify-center gap-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm font-semibold tracking-wider text-tcm-charcoal dark:text-white" aria-label="Toggle Direction">
+                            <span>RTL</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Account / Logout -->
+                <div class="pt-2 border-t border-gray-100 dark:border-gray-700">
+                    <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 font-medium transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <div class="flex h-screen pt-16">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation (Desktop) -->
         <aside class="w-64 bg-white dark:bg-gray-800 ltr:border-r rtl:border-l border-gray-200 dark:border-gray-700 hidden md:block overflow-y-auto">
             <nav class="p-4 space-y-2" id="dashboard-nav">
-                <a href="#" data-target="overview" class="dash-tab block px-4 py-3 rounded-lg bg-tcm-sand dark:bg-gray-700 text-tcm-charcoal dark:text-white font-medium">Overview</a>
-                <a href="#" data-target="appointments" class="dash-tab block px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">Appointments</a>
-                <a href="#" data-target="progress" class="dash-tab block px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">Treatment Progress</a>
-                <a href="#" data-target="herbs" class="dash-tab block px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">Herbal Prescriptions</a>
-                <a href="#" data-target="history" class="dash-tab block px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">Session History</a>
-                <a href="#" data-target="payments" class="dash-tab block px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">Payments</a>
-                <a href="index.html" class="block px-4 py-3 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 mt-8">Logout</a>
+                <a href="#" data-target="overview" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg bg-tcm-sand dark:bg-gray-700 text-tcm-charcoal dark:text-white font-medium">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" data-target="appointments" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Appointments</span>
+                </a>
+                <a href="#" data-target="progress" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Treatment Progress</span>
+                </a>
+                <a href="#" data-target="herbs" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                    </svg>
+                    <span>Herbal Prescriptions</span>
+                </a>
+                <a href="#" data-target="history" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>Session History</span>
+                </a>
+                <a href="#" data-target="payments" class="dash-tab flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-300">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    <span>Payments</span>
+                </a>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 mt-8">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
             </nav>
         </aside>
 
@@ -118,7 +263,7 @@
                             <div class="flex flex-col sm:flex-row gap-4 items-center justify-between bg-tcm-ivory dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
                                 <div>
                                     <p class="font-medium text-lg text-tcm-charcoal dark:text-tcm-sand">Acupuncture Follow-up</p>
-                                    <p class="text-gray-500 text-sm">Dr. Lin Wei • Room 3</p>
+                                    <p class="text-gray-500 text-sm"><span class="whitespace-nowrap font-medium text-tcm-charcoal dark:text-gray-300">Dr. Lin Wei</span> • Room 3</p>
                                 </div>
                                 <div class="ltr:text-left rtl:ltr:text-right rtl:text-left sm:ltr:text-right rtl:text-left">
                                     <p class="font-medium text-tcm-terracotta">Tomorrow, 10:00 AM</p>
@@ -165,27 +310,27 @@
 
                 <!-- Appointments Tab -->
                 <div id="appointments" class="tab-pane hidden">
-                    <div class="card p-8">
-                        <div class="flex justify-between items-center mb-6">
+                    <div class="card p-5 sm:p-8">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                             <h2 class="text-2xl font-display">Manage Appointments</h2>
-                            <button class="btn-primary py-2 px-4 text-sm">Book New Appointment</button>
+                            <button class="btn-primary py-2.5 px-5 text-sm w-full sm:w-auto text-center whitespace-nowrap self-start sm:self-auto">Book New Appointment</button>
                         </div>
                         <h3 class="text-lg font-medium mb-4">Upcoming</h3>
-                        <div class="bg-tcm-ivory dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700 mb-8 flex justify-between items-center">
+                        <div class="bg-tcm-ivory dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700 mb-8 flex flex-col sm:flex-row gap-3 sm:justify-between sm:items-center">
                             <div>
                                 <p class="font-medium text-lg">Acupuncture Follow-up</p>
-                                <p class="text-gray-500 text-sm">Tomorrow, 10:00 AM • Dr. Lin Wei</p>
+                                <p class="text-gray-500 text-sm">Tomorrow, 10:00 AM • <span class="whitespace-nowrap font-medium text-tcm-charcoal dark:text-gray-300">Dr. Lin Wei</span></p>
                             </div>
-                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">Confirmed</span>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full self-start sm:self-auto">Confirmed</span>
                         </div>
                         <h3 class="text-lg font-medium mb-4 border-t border-gray-100 dark:border-gray-700 pt-6">Past Appointments</h3>
                         <div class="space-y-4">
-                            <div class="p-4 border border-gray-100 dark:border-gray-700 rounded-lg flex justify-between items-center">
+                            <div class="p-4 border border-gray-100 dark:border-gray-700 rounded-lg flex flex-col sm:flex-row gap-2 sm:justify-between sm:items-center">
                                 <div>
                                     <p class="font-medium">Initial Consultation</p>
                                     <p class="text-gray-500 text-sm">Oct 05, 2026</p>
                                 </div>
-                                <span class="text-gray-500 text-sm">Completed</span>
+                                <span class="text-gray-500 text-sm self-start sm:self-auto">Completed</span>
                             </div>
                         </div>
                     </div>
@@ -193,7 +338,7 @@
 
                 <!-- Progress Tab -->
                 <div id="progress" class="tab-pane hidden">
-                    <div class="card p-8">
+                    <div class="card p-5 sm:p-8">
                         <h2 class="text-2xl font-display mb-6">Treatment Progress</h2>
                         <div class="mb-8">
                             <div class="flex justify-between text-sm items-center mb-2">
@@ -223,10 +368,10 @@
 
                 <!-- Herbs Tab -->
                 <div id="herbs" class="tab-pane hidden">
-                    <div class="card p-8">
-                        <div class="flex justify-between items-center mb-6">
+                    <div class="card p-5 sm:p-8">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                             <h2 class="text-2xl font-display">Herbal Prescriptions</h2>
-                            <button class="btn-primary py-2 px-4 text-sm">Request Refill</button>
+                            <button class="btn-primary py-2.5 px-5 text-sm w-full sm:w-auto text-center whitespace-nowrap self-start sm:self-auto">Request Refill</button>
                         </div>
                         <div class="space-y-6">
                             <div class="bg-tcm-ivory dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
@@ -258,22 +403,22 @@
 
                 <!-- History Tab -->
                 <div id="history" class="tab-pane hidden">
-                    <div class="card p-8">
+                    <div class="card p-5 sm:p-8">
                         <h2 class="text-2xl font-display mb-6">Session History</h2>
                         <div class="space-y-8">
                             <div class="ltr:border-l-2 rtl:border-r-2 border-tcm-sage ltr:pl-6 rtl:pr-6 relative">
                                 <div class="absolute w-3 h-3 bg-tcm-sage rounded-full ltr:-left-[7px] rtl:-right-[7px] top-1"></div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <p class="text-sm text-gray-500 font-medium">Oct 12, 2026 • Acupuncture & Cupping</p>
-                                    <span class="text-xs text-tcm-terracotta">Dr. Lin Wei</span>
+                                <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline sm:items-center gap-2 mb-2">
+                                    <p class="text-sm text-gray-500 font-medium">Oct 12, 2026 • Acupuncture &amp; Cupping</p>
+                                    <span class="text-xs text-tcm-terracotta font-medium whitespace-nowrap shrink-0">Dr. Lin Wei</span>
                                 </div>
                                 <p class="text-gray-700 dark:text-gray-300 font-light text-sm">Patient reported significant reduction in tension headaches. Pulse is smoothing out. Continuing with Liver Qi stagnation protocol. Added cupping to upper trapezius for muscle stiffness.</p>
                             </div>
                             <div class="ltr:border-l-2 rtl:border-r-2 border-gray-300 dark:border-gray-600 ltr:pl-6 rtl:pr-6 relative">
                                 <div class="absolute w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-full ltr:-left-[7px] rtl:-right-[7px] top-1"></div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <p class="text-sm text-gray-500 font-medium">Oct 05, 2026 • Initial Intake & Acupuncture</p>
-                                    <span class="text-xs text-tcm-terracotta">Dr. Lin Wei</span>
+                                <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline sm:items-center gap-2 mb-2">
+                                    <p class="text-sm text-gray-500 font-medium">Oct 05, 2026 • Initial Intake &amp; Acupuncture</p>
+                                    <span class="text-xs text-tcm-terracotta font-medium whitespace-nowrap shrink-0">Dr. Lin Wei</span>
                                 </div>
                                 <p class="text-gray-700 dark:text-gray-300 font-light text-sm">Initial intensive session. Comprehensive health history taken. Tongue is pale with teeth marks; pulse is wiry. Heavy cupping applied to upper back. Patient advised to hydrate well and avoid cold foods.</p>
                             </div>
@@ -283,8 +428,8 @@
 
                 <!-- Payments Tab -->
                 <div id="payments" class="tab-pane hidden">
-                    <div class="card p-8">
-                        <div class="flex justify-between items-center mb-6">
+                    <div class="card p-5 sm:p-8">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-6">
                             <h2 class="text-2xl font-display">Payment History</h2>
                             <p class="font-medium text-tcm-sage">Current Balance: $0.00</p>
                         </div>
@@ -326,24 +471,68 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Dashboard Tab Navigation
+        // Dashboard Tab Navigation & Mobile Drawer
         document.addEventListener('DOMContentLoaded', () => {
             const tabs = document.querySelectorAll('.dash-tab');
             const panes = document.querySelectorAll('.tab-pane');
+            const mobileMenuBtn = document.getElementById('dashboard-mobile-menu-btn');
+            const mobileCloseBtn = document.getElementById('dashboard-mobile-close-btn');
+            const mobileDrawer = document.getElementById('dashboard-sidebar-mobile');
+            const overlay = document.getElementById('dashboard-sidebar-overlay');
 
+            // Mobile Drawer Open / Close Functions
+            function openMobileDrawer() {
+                if (!mobileDrawer || !overlay) return;
+                overlay.classList.remove('hidden');
+                // Force reflow for smooth opacity transition
+                void overlay.offsetWidth;
+                overlay.classList.remove('opacity-0');
+                
+                mobileDrawer.classList.remove('ltr:-translate-x-full', 'rtl:translate-x-full');
+                mobileDrawer.classList.add('translate-x-0');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileDrawer() {
+                if (!mobileDrawer || !overlay) return;
+                overlay.classList.add('opacity-0');
+                mobileDrawer.classList.remove('translate-x-0');
+                mobileDrawer.classList.add('ltr:-translate-x-full', 'rtl:translate-x-full');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileDrawer);
+            }
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileDrawer);
+            }
+            if (overlay) {
+                overlay.addEventListener('click', closeMobileDrawer);
+            }
+
+            // Tab Switching (Syncs both Desktop and Mobile navigation)
             tabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    // Remove active styles from all tabs
+                    const targetId = tab.getAttribute('data-target');
+                    if (!targetId) return;
+
+                    // Remove active styles from ALL tabs
                     tabs.forEach(t => {
                         t.classList.remove('bg-tcm-sand', 'dark:bg-gray-700', 'text-tcm-charcoal', 'dark:text-white');
                         t.classList.add('hover:bg-gray-50', 'dark:hover:bg-gray-700/50', 'text-gray-600', 'dark:text-gray-300');
                     });
-                    
-                    // Add active styles to clicked tab
-                    tab.classList.add('bg-tcm-sand', 'dark:bg-gray-700', 'text-tcm-charcoal', 'dark:text-white');
-                    tab.classList.remove('hover:bg-gray-50', 'dark:hover:bg-gray-700/50', 'text-gray-600', 'dark:text-gray-300');
+
+                    // Add active styles to all matching tabs (both desktop and mobile)
+                    const matchingTabs = document.querySelectorAll(`.dash-tab[data-target="${targetId}"]`);
+                    matchingTabs.forEach(t => {
+                        t.classList.add('bg-tcm-sand', 'dark:bg-gray-700', 'text-tcm-charcoal', 'dark:text-white');
+                        t.classList.remove('hover:bg-gray-50', 'dark:hover:bg-gray-700/50', 'text-gray-600', 'dark:text-gray-300');
+                    });
 
                     // Hide all panes
                     panes.forEach(pane => {
@@ -352,12 +541,14 @@
                     });
 
                     // Show target pane
-                    const targetId = tab.getAttribute('data-target');
                     const targetPane = document.getElementById(targetId);
                     if (targetPane) {
                         targetPane.classList.remove('hidden');
                         targetPane.classList.add('block');
                     }
+
+                    // Auto-close mobile drawer after tab selection
+                    closeMobileDrawer();
                 });
             });
         });

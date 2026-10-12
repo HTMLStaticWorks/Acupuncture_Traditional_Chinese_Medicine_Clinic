@@ -123,5 +123,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 3000);
             }
         });
-    });
+    // 7. Interactive Treatment Pathway Switcher (Home Page 2)
+    const pathwayTabs = document.querySelectorAll('#pathway-tabs .pathway-btn');
+    const pathwayTitle = document.getElementById('pathway-title');
+    const pathwayBadge = document.getElementById('pathway-badge');
+    const pathwayDesc = document.getElementById('pathway-desc');
+    const pathwayLink = document.getElementById('pathway-link');
+
+    if (pathwayTabs.length && pathwayTitle && pathwayBadge && pathwayDesc && pathwayLink) {
+        const pathwayData = {
+            pain: {
+                title: "Precision Electro-Acupuncture + Medical Cupping",
+                badge: "92% Relief Rate",
+                desc: "Targeted meridian decompression releases deep myofascial triggers, down-regulates inflammatory pain pathways, and restores joint mobility.",
+                link: "contact.html?therapy=pain"
+            },
+            stress: {
+                title: "Auriculotherapy + Shen-Calming Herbal Tinctures",
+                badge: "Deep Rest & Cortisol Reset",
+                desc: "Calms the autonomic nervous system, settles excessive stress responses, and gently restores sound, uninterrupted sleep architecture.",
+                link: "contact.html?therapy=stress"
+            },
+            digestive: {
+                title: "Spleen-Stomach Harmonization + Digestive Formulas",
+                badge: "Microbiome & Bloat Relief",
+                desc: "Strengthens metabolic Qi, relieves chronic bloating, acid reflux, and resolves gut dysbiosis through targeted botanical teas.",
+                link: "contact.html?therapy=digestive"
+            },
+            hormones: {
+                title: "Five-Element Endocrine Balance + Cycle Restoration",
+                badge: "Natural Vitality & Fertility",
+                desc: "Balances hormonal rhythms, alleviates cycle discomfort, supports fertility protocols, and eases peri-menopausal fluctuations.",
+                link: "contact.html?therapy=hormones"
+            }
+        };
+
+        pathwayTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const pathwayKey = tab.getAttribute('data-pathway');
+                const data = pathwayData[pathwayKey];
+                if (!data) return;
+
+                // Update active button state
+                pathwayTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-tcm-terracotta', 'text-white', 'shadow-sm');
+                    t.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
+                });
+
+                tab.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
+                tab.classList.add('active', 'bg-tcm-terracotta', 'text-white', 'shadow-sm');
+
+                // Update content with subtle animation
+                const contentBox = document.getElementById('pathway-content');
+                if (contentBox) {
+                    contentBox.classList.add('opacity-50');
+                    setTimeout(() => {
+                        pathwayTitle.textContent = data.title;
+                        pathwayBadge.textContent = data.badge;
+                        pathwayDesc.textContent = data.desc;
+                        pathwayLink.href = data.link;
+                        contentBox.classList.remove('opacity-50');
+                    }, 120);
+                }
+            });
+        });
+    }
 });

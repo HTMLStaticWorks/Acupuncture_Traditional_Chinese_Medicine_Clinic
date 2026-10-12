@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Treatments | Harmony TCM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { tcm: { charcoal: '#2D3748', dark: '#1A202C', ivory: '#FAF9F6', sand: '#F5F0E6', terracotta: '#C87968', sage: '#9CAAA0', } }, fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], } } } }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+          html {
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+          }
+          body {
+            @apply font-sans antialiased text-tcm-charcoal bg-tcm-ivory;
+            transition: background-color 0.3s ease, color 0.3s ease;
+          }
+          html.dark body {
+            @apply text-tcm-sand bg-tcm-dark;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            @apply font-display tracking-tight;
+          }
+        }
+        @layer components {
+          .btn-primary {
+            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200;
+          }
+          .btn-secondary {
+            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark;
+          }
+          .nav-link {
+            @apply text-base font-medium text-tcm-charcoal hover:text-tcm-terracotta transition-colors duration-200 dark:text-tcm-sand dark:hover:text-tcm-sage relative;
+          }
+          .nav-link.active::after {
+            content: '';
+            @apply absolute bottom-[-4px] left-0 w-full h-[2px] bg-tcm-terracotta dark:bg-tcm-sage rounded-full;
+          }
+          .card {
+            @apply bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-700;
+          }
+          ::-webkit-scrollbar-thumb {
+            @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+          }
+          ::-webkit-scrollbar-thumb:hover {
+            @apply bg-tcm-sage;
+          }
+          .label-desc-grid {
+            @apply grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-4 items-start;
+          }
+        }
+    </style>
+    <link rel="icon" type="image/jpeg" href="images/tcm_logo_v2.jpg">
+</head>
+
+<body
+    class="bg-tcm-ivory text-tcm-charcoal dark:bg-tcm-dark dark:text-tcm-sand font-sans transition-colors duration-300">
+
+    <!-- Header -->
+    <header
+        class="fixed w-full top-0 z-50 bg-tcm-ivory/90 dark:bg-tcm-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img class="h-10 w-auto rounded-md object-cover" src="images/tcm_logo_v2.jpg"
+                        alt="Harmony TCM Logo">
+                    <span class="font-display font-semibold text-2xl tracking-wide whitespace-nowrap">Harmony TCM</span>
+                </a>
+                <nav class="hidden xl:flex gap-7 items-center">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="home-2.html" class="nav-link">Home 2</a>
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="practitioners.html" class="nav-link">Practitioners</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <div class="flex items-center gap-2">
+                        <button id="theme-toggle"
+                            class="theme-toggle w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Toggle Theme">
+                            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                                </path>
+                            </svg>
+                            <svg class="w-5 h-5 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button id="rtl-toggle"
+                            class="rtl-toggle w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-semibold tracking-wider">RTL</button>
+                        <a href="signup.html" class="btn-primary py-2 px-5 text-sm ml-2">Sign Up</a>
+                    </div>
+                </nav>
+                <div class="xl:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Home</a>
+                <a href="home-2.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Home 2</a>
+                <a href="services.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-terracotta bg-gray-50 dark:bg-gray-800">Services</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">About</a>
+                <a href="practitioners.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Practitioners</a>
+                <a href="blog.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Blog</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Contact</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-tcm-charcoal dark:text-tcm-sand hover:text-tcm-terracotta">Dashboard</a>
+                <div class="mt-4 flex flex-col gap-4 px-3 py-2">
+                    <div class="flex gap-4">
+                        <button
+                            class="theme-toggle flex-1 py-2 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Toggle Theme">
+                            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                                </path>
+                            </svg>
+                            <svg class="w-5 h-5 hidden dark:block text-tcm-sand" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button
+                            class="rtl-toggle flex-1 py-2 flex items-center justify-center bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-semibold tracking-wider">RTL</button>
+                    </div>
+                    <a href="signup.html" class="btn-primary w-full text-center py-3">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Section 1: Hero (Consistent standard height across all subpages) -->
+        <section class="relative h-[380px] sm:h-[420px] md:h-[450px] overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-tcm-charcoal/50 dark:bg-tcm-dark/70 z-10 mix-blend-multiply"></div>
+            <img src="images/tcm_clinic_interior_1789908975551.jpg" alt="Harmony TCM Treatments & Clinic Sanctuary"
+                class="absolute inset-0 w-full h-full object-cover">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center text-white">
+                <span class="text-xs uppercase tracking-[0.25em] text-tcm-sage font-medium mb-2 block">Comprehensive Holistic Care</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display mb-4">Our Services & Treatments</h1>
+                <p class="text-lg md:text-xl font-light text-gray-100 max-w-2xl mx-auto">
+                    Time-tested modalities refined for modern living. We combine gentle acupuncture, bespoke herbal alchemy, and restorative bodywork to heal root imbalances.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Our Treatments (Comprehensive Modalities Grid) -->
+        <section id="treatments" class="py-24 bg-tcm-ivory dark:bg-tcm-dark border-b border-gray-100 dark:border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-tcm-terracotta font-medium tracking-wider uppercase text-sm mb-3 block">Signature Modalities</span>
+                    <h2 class="text-3xl md:text-5xl font-display mb-6">Our Treatments</h2>
+                    <p class="text-gray-600 dark:text-gray-400 font-light text-lg">
+                        Each therapy is administered by NCCAOM-certified practitioners and custom-calibrated to your body's five-element energetic pattern.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Treatment 1: Acupuncture -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="images/acupuncture_macro_1789906990843.jpg" alt="Acupuncture Session"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-tcm-terracotta">
+                                    Primary Therapy
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 60 – 75 Mins</span>
+                                    <span>★ Initial Diagnosis Included</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">Classical & Electro-Acupuncture</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Ultra-fine sterile Japanese needles stimulate specific energetic meridian points to open systemic blockages, regulate nervous function, and release endorphins.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Chronic back & neck pain, migraines, insomnia, anxiety.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=acupuncture" class="btn-primary w-full py-2.5 text-sm">
+                                Book Acupuncture
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Treatment 2: Herbal Medicine -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="images/herbal_medicine_1789907005432.jpg" alt="Herbal Medicine Dispensary"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-tcm-sage">
+                                    Artisanal Pharmacopeia
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 45 Mins Consultation</span>
+                                    <span>🌿 300+ Pure Botanicals</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">Custom Herbal Formulations</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Personalized decoctions, powders, and teas compounded from certified organic, heavy-metal-free herbs to rebalance organ systems from within.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Hormonal imbalance, digestion, chronic fatigue, immunity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=herbal" class="btn-primary w-full py-2.5 text-sm">
+                                Book Herbal Consult
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Treatment 3: Cupping Therapy -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="images/cupping_therapy.jpg" alt="Myofascial Cupping"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-amber-600 dark:text-amber-400">
+                                    Deep Decompression
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 45 – 60 Mins</span>
+                                    <span>⚡ Fast Relief</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">Myofascial Cupping Therapy</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Targeted negative pressure suction releases deep connective tissue adhesion, stimulates lymphatic drainage, and increases oxygenated micro-circulation.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Athletic recovery, shoulder tightness, respiratory congestion.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=cupping" class="btn-primary w-full py-2.5 text-sm">
+                                Book Cupping
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Treatment 4: Moxibustion -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="https://images.pexels.com/photos/8312821/pexels-photo-8312821.jpeg" alt="Moxibustion & Heat Therapy"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-rose-600 dark:text-rose-400">
+                                    Thermal Therapy
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 45 Mins</span>
+                                    <span>🔥 Nourishing Warmth</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">Moxibustion (Moxa) Heat Therapy</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Thermal therapy utilizing pure aged Artemisia mugwort to deeply warm acupuncture meridians, expel chronic cold stagnation, and strengthen vitality.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Joint stiffness, menstrual cramps, cold constitution, poor circulation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=moxibustion" class="btn-primary w-full py-2.5 text-sm">
+                                Book Moxibustion
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Treatment 5: Gua Sha -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80" alt="Gua Sha Therapy"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                                    Fascial Sculpting
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 40 Mins</span>
+                                    <span>✨ Jade & Buffalo Horn</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">Therapeutic Gua Sha Scraping</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Unidirectional scraping strokes along tense muscular bands to clear systemic heat, dissolve stubborn knots, and stimulate immediate anti-inflammatory responses.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Upper back tension, neck stiffness, facial rejuvenation, early cold onset.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=guasha" class="btn-primary w-full py-2.5 text-sm">
+                                Book Gua Sha
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Treatment 6: Dietary & Lifestyle Counseling -->
+                    <div class="card group flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="https://images.pexels.com/photos/8312853/pexels-photo-8312853.jpeg" alt="TCM Nutrition & Lifestyle"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                                    Lifelong Balance
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                                    <span>⏱ 60 Mins</span>
+                                    <span>☯ Five Elements Blueprint</span>
+                                </div>
+                                <h3 class="text-2xl font-display mb-3 group-hover:text-tcm-terracotta transition-colors">TCM Nutrition & Lifestyle Care</h3>
+                                <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                    Holistic thermal food analysis and seasonal eating guidance crafted around your unique organ constitutional patterns to maintain long-term balance.
+                                </p>
+                                <div class="space-y-1 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                    <p><strong class="font-medium text-gray-700 dark:text-gray-300">Best For:</strong> Metabolic sluggishness, gut dysbiosis, stress management, preventative health.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="contact.html?service=nutrition" class="btn-primary w-full py-2.5 text-sm">
+                                Book Consultation
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Treatment Process / How It Works -->
+        <section class="py-24 bg-tcm-sand dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <span class="text-tcm-terracotta font-medium tracking-wider uppercase text-sm mb-3 block">Step-By-Step Journey</span>
+                    <h2 class="text-3xl md:text-5xl font-display mb-6">How It Works: Treatment Process</h2>
+                    <p class="text-gray-600 dark:text-gray-400 font-light text-lg">
+                        From your first intake to ongoing restorative care, our collaborative clinical protocol ensures every step is transparent, calming, and focused on root healing.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-tcm-terracotta text-white flex items-center justify-center font-display font-bold text-lg mb-6 shadow-md shadow-tcm-terracotta/20">
+                                01
+                            </div>
+                            <h3 class="text-xl font-display mb-3 text-gray-900 dark:text-white">Pulse & Tongue Diagnostic Intake</h3>
+                            <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                We examine the 28 radial pulse positions, sublingual veins, tongue coat, and full health history to uncover subtle energetic disharmonies.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-medium text-tcm-terracotta">
+                            Comprehensive Root Analysis
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-tcm-sage text-white flex items-center justify-center font-display font-bold text-lg mb-6 shadow-md shadow-tcm-sage/20">
+                                02
+                            </div>
+                            <h3 class="text-xl font-display mb-3 text-gray-900 dark:text-white">Custom Treatment Architecture</h3>
+                            <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                Your practitioner crafts an individualized sequence pairing precision acupuncture with herbal formulas and complementary modalities.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-medium text-tcm-sage">
+                            Personalized Care Roadmap
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center font-display font-bold text-lg mb-6 shadow-md shadow-amber-600/20">
+                                03
+                            </div>
+                            <h3 class="text-xl font-display mb-3 text-gray-900 dark:text-white">Restorative Sanctuary Session</h3>
+                            <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                Relax on heated treatment tables in private peaceful suites. Needles are gently retained for 25–35 minutes while your body deeply resets.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-medium text-amber-600 dark:text-amber-400">
+                            Painless & Meditative
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-display font-bold text-lg mb-6 shadow-md shadow-emerald-600/20">
+                                04
+                            </div>
+                            <h3 class="text-xl font-display mb-3 text-gray-900 dark:text-white">Botanicals & At-Home Guidance</h3>
+                            <p class="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed mb-4">
+                                Leave with custom botanical remedies from our onsite dispensary and targeted lifestyle guidance for sustained wellness between visits.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                            Sustainable Lifelong Healing
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mid-Process Callout Banner -->
+                <div class="mt-16 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-tcm-terracotta/10 text-tcm-terracotta flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-semibold text-lg text-gray-900 dark:text-white">Curious what to expect during your first visit?</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Initial consultations last 75 minutes and include your initial acupuncture treatment.</p>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary whitespace-nowrap px-6 py-3">Book Initial Visit</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Why Choose Us -->
+        <section class="py-24 bg-white dark:bg-tcm-dark border-b border-gray-100 dark:border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    
+                    <div>
+                        <span class="text-tcm-terracotta font-medium tracking-wider uppercase text-sm mb-3 block">Clinical Excellence</span>
+                        <h2 class="text-3xl md:text-5xl font-display mb-6">Why Choose Harmony TCM</h2>
+                        <p class="text-gray-600 dark:text-gray-400 font-light text-lg mb-8 leading-relaxed">
+                            We pride ourselves on offering a bridge between classical Chinese medical arts and rigorous clinical standards. Our sanctuary provides deeply personalized care that honors both your individual body and your busy modern schedule.
+                        </p>
+
+                        <div class="space-y-6">
+                            <!-- Feature 1 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-tcm-sage/20 text-tcm-charcoal dark:text-tcm-sand flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-base text-gray-900 dark:text-white mb-1">NCCAOM Board Certified Practitioners</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 font-light">
+                                        All acupuncturists hold Master's or Doctoral degrees in Oriental Medicine with rigorous national board certification and ongoing clinical education.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-tcm-terracotta/20 text-tcm-terracotta flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-base text-gray-900 dark:text-white mb-1">Pure Organic Onsite Dispensary</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 font-light">
+                                        Over 300+ third-party laboratory-tested botanical remedies. 100% free from pesticides, heavy metals, synthetic binders, or adulterants.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-base text-gray-900 dark:text-white mb-1">Virtually Pain-Free Needle Technique</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 font-light">
+                                        Utilizing ultra-refined, hair-thin Japanese sterile needles and gentle insertion guide tubes for a comfortable, calming clinical experience.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 4 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-base text-gray-900 dark:text-white mb-1">Insurance & HSA/FSA Support</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 font-light">
+                                        We verify out-of-network acupuncture benefits, offer detailed medical superbills, and accept all major HSA and FSA health cards.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Visual Showcase & Trust Badges -->
+                    <div class="relative">
+                        <div class="relative mx-auto rounded-3xl overflow-hidden shadow-2xl border-2 border-white/60 dark:border-gray-700/60">
+                            <img src="images/tcm_hero_1_1789906976315.jpg" alt="Treatment Suite Experience"
+                                class="w-full h-[520px] object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                            
+                            <!-- Overlay Metrics Card -->
+                            <div class="absolute bottom-6 left-6 right-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl p-6 border border-white/30 dark:border-gray-700/60 shadow-xl">
+                                <div class="grid grid-cols-3 gap-4 text-center divide-x divide-gray-200 dark:divide-gray-700">
+                                    <div>
+                                        <p class="font-display text-2xl sm:text-3xl font-bold text-tcm-terracotta">15+</p>
+                                        <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Years Practice</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-display text-2xl sm:text-3xl font-bold text-tcm-sage">5,000+</p>
+                                        <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Patients Treated</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-display text-2xl sm:text-3xl font-bold text-amber-500">98%</p>
+                                        <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Satisfaction</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: High-Impact Call to Action -->
+        <section class="py-20 bg-gradient-to-br from-tcm-sand via-white to-stone-100 dark:from-gray-900 dark:via-tcm-dark dark:to-gray-950 relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Now Scheduling Appointments For This Week
+                </span>
+                
+                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-display mb-6 text-gray-900 dark:text-white">
+                    Ready to Awaken Your Natural Healing?
+                </h2>
+                
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Take the first step toward lasting pain relief, emotional calm, and balanced vitality. Book an appointment online or contact our clinic team for a personalized consultation.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="contact.html" class="btn-primary px-8 py-4 text-base shadow-lg shadow-tcm-terracotta/25 w-full sm:w-auto">
+                        Book an Appointment
+                    </a>
+                    <a href="contact.html?type=consultation" class="btn-secondary px-8 py-4 text-base w-full sm:w-auto">
+                        Book a Consultation
+                    </a>
+                    <a href="tel:+14155550199" class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-tcm-terracotta font-medium transition-colors py-2 px-3">
+                        <svg class="w-5 h-5 text-tcm-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        <span>Call: (415) 555-0199</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-tcm-dark border-t border-gray-200 dark:border-gray-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img class="h-8 w-auto rounded-md object-cover" src="images/tcm_logo_v2.jpg"
+                            alt="Harmony TCM Logo">
+                        <span class="font-display font-semibold text-xl tracking-wide">Harmony TCM</span>
+                    </a>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
+                        Ancient wisdom for modern wellness. Restoring balance to your body, mind, and spirit.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display font-medium text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Home</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm font-medium">Services</a>
+                        </li>
+                        <li><a href="about.html"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">About
+                                Us</a></li>
+                        <li><a href="practitioners.html"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Practitioners</a>
+                        </li>
+                        <li><a href="blog.html"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Treatments -->
+                <div>
+                    <h4 class="font-display font-medium text-lg mb-6">Treatments</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#treatments"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Acupuncture</a>
+                        </li>
+                        <li><a href="services.html#treatments"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Herbal
+                                Medicine</a></li>
+                        <li><a href="services.html#treatments"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Cupping
+                                Therapy</a></li>
+                        <li><a href="services.html#treatments"
+                                class="text-gray-500 hover:text-tcm-terracotta dark:hover:text-tcm-sage transition-colors text-sm">Moxibustion</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-display font-medium text-lg mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 dark:text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>123 Harmony Lane, Suite 400<br>Wellness District, NY 10001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Mon-Fri: 9am — 6pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-400">© 2026 Harmony TCM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
