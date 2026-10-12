@@ -8,6 +8,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
+        <!-- Theme & Direction Early Sync -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                var dir = localStorage.getItem('dir');
+                if (dir) {
+                    document.documentElement.setAttribute('dir', dir);
+                }
+            } catch (e) {}
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', theme: { extend: { colors: { tcm: { charcoal: '#2D3748', dark: '#1A202C', ivory: '#FAF9F6', sand: '#F5F0E6', terracotta: '#C87968', sage: '#9CAAA0', } }, fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], } } } }
@@ -32,10 +50,10 @@
         }
         @layer components {
           .btn-primary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200 whitespace-nowrap;
           }
           .btn-secondary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark whitespace-nowrap;
           }
           .nav-link {
             @apply text-base font-medium text-tcm-charcoal hover:text-tcm-terracotta transition-colors duration-200 dark:text-tcm-sand dark:hover:text-tcm-sage relative;
@@ -154,7 +172,7 @@
         <!-- Section 1: Hero -->
         <section class="relative h-[380px] sm:h-[420px] md:h-[450px] overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-tcm-charcoal/50 dark:bg-tcm-dark/70 z-10 mix-blend-multiply"></div>
-            <img src="images/tcm_hero_1_1789906976315.jpg" alt="Practitioners Background"
+            <img src="images/practitioners_hero.jpg" alt="Our Expert Practitioners & TCM Doctors"
                 class="absolute inset-0 w-full h-full object-cover">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center text-white">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-display mb-4">Our Practitioners</h1>
@@ -380,7 +398,7 @@
                                 <img src="images/herbal_medicine_1789907005432.jpg" alt="Digestive Health Support"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                <span class="absolute bottom-3 left-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-sm">
+                                <span class="absolute bottom-3 left-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-full text-xs font-semibold text-tcm-sage shadow-sm">
                                     Gut & Metabolism
                                 </span>
                             </div>
@@ -391,19 +409,19 @@
                                 </p>
                                 <ul class="space-y-2 text-gray-600 dark:text-gray-400 font-light text-sm border-t border-gray-100 dark:border-gray-700/60 pt-3">
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-tcm-sage"></span>
                                         <span>IBS, Gas & Chronic Bloating</span>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-tcm-sage"></span>
                                         <span>Acid Reflux & Heartburn</span>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-tcm-sage"></span>
                                         <span>Constipation & Sluggish Digestion</span>
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-tcm-sage"></span>
                                         <span>Food Sensitivities & Nausea</span>
                                     </li>
                                 </ul>

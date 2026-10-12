@@ -16,6 +16,24 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Tailwind CDN with Config -->
+        <!-- Theme & Direction Early Sync -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                var dir = localStorage.getItem('dir');
+                if (dir) {
+                    document.documentElement.setAttribute('dir', dir);
+                }
+            } catch (e) {}
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -60,10 +78,10 @@
         }
         @layer components {
           .btn-primary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200 whitespace-nowrap;
           }
           .btn-secondary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark whitespace-nowrap;
           }
           .nav-link {
             @apply text-base font-medium text-tcm-charcoal hover:text-tcm-terracotta transition-colors duration-200 dark:text-tcm-sand dark:hover:text-tcm-sage relative;
@@ -181,11 +199,11 @@
 
     <main class="pt-20">
         <!-- Section 1: Premium Hero -->
-        <section class="relative bg-tcm-sand dark:bg-gray-900 overflow-hidden min-h-[600px] lg:min-h-[calc(100vh-5rem)] flex items-center">
-            <div class="max-w-7xl mx-auto w-full">
-                <div
-                    class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-lg xl:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8">
-                    <div class="sm:text-center lg:text-left fade-in-up">
+        <section class="relative bg-tcm-sand dark:bg-gray-900 overflow-hidden min-h-[600px] lg:min-h-[calc(100vh-5rem)] flex items-center py-8 lg:py-0">
+            <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-6 sm:py-10 lg:py-16">
+                    <!-- Text Content (7 cols on desktop) -->
+                    <div class="lg:col-span-7 sm:text-center lg:text-left fade-in-up">
                         <span
                             class="text-tcm-terracotta font-medium tracking-wider uppercase text-sm mb-4 block">Holistic
                             Healthcare</span>
@@ -199,13 +217,21 @@
                             Experience the profound intelligence of Traditional Chinese Medicine. We provide
                             personalized, premium care to harmonize your body, mind, and spirit naturally.
                         </p>
-                        <div class="mt-10 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
-                            <a href="contact.html" class="btn-primary">Book a Treatment</a>
-                            <a href="contact.html" class="btn-secondary">Explore Treatments</a>
+                        <div class="hero-cta-group mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
+                            <a href="contact.html" class="btn-primary w-full sm:w-auto whitespace-nowrap text-center justify-center px-7 py-3.5">Book a Treatment</a>
+                            <a href="contact.html" class="btn-secondary w-full sm:w-auto whitespace-nowrap text-center justify-center px-7 py-3.5">Explore Treatments</a>
+                        </div>
+
+                        <!-- Mobile & Tablet Hero Image -->
+                        <div class="block lg:hidden mt-8 mb-4">
+                            <div class="relative w-full max-w-md mx-auto">
+                                <img class="h-64 sm:h-80 w-full object-cover rounded-2xl shadow-xl rounded-tl-[60px] rounded-br-[60px]"
+                                    src="images/tcm_hero_1_1789906976315.jpg" alt="Premium holistic clinic interior">
+                            </div>
                         </div>
 
                         <div
-                            class="mt-12 flex items-center gap-6 sm:justify-center lg:justify-start border-t border-gray-200 dark:border-gray-700 pt-6">
+                            class="mt-8 sm:mt-12 flex items-center gap-6 sm:justify-center lg:justify-start border-t border-gray-200 dark:border-gray-700 pt-6">
                             <div>
                                 <p class="text-2xl font-display font-semibold text-tcm-charcoal dark:text-white">15+</p>
                                 <p class="text-xs text-gray-500 uppercase tracking-wide">Years Practice</p>
@@ -217,12 +243,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Desktop Hero Image (5 cols) -->
+                    <div class="hidden lg:flex lg:col-span-5 items-center justify-center p-4 lg:p-6">
+                        <img class="h-[500px] w-full object-cover rounded-2xl shadow-2xl rounded-tl-[100px] rounded-br-[100px]"
+                            src="images/tcm_hero_1_1789906976315.jpg" alt="Premium holistic clinic interior">
+                    </div>
                 </div>
-            </div>
-            <div
-                class="lg:absolute lg:inset-y-0 ltr:lg:right-0 rtl:lg:left-0 lg:w-1/2 mt-10 lg:mt-0 p-4 lg:p-10 flex items-center justify-center">
-                <img class="h-96 w-full object-cover sm:h-72 md:h-96 lg:h-full rounded-2xl shadow-2xl rounded-tl-[100px] rounded-br-[100px]"
-                    src="images/tcm_hero_1_1789906976315.jpg" alt="Premium holistic clinic interior">
             </div>
         </section>
 
@@ -403,50 +430,50 @@
                     <div class="hidden md:block absolute top-[36px] left-8 right-8 h-[1px] bg-gray-200 dark:bg-gray-800 z-0"></div>
                     
                     <!-- Mobile Connecting Line -->
-                    <div class="md:hidden absolute top-8 bottom-8 left-[38px] w-[1px] bg-gray-200 dark:bg-gray-800 z-0"></div>
+                    <div class="md:hidden absolute top-8 bottom-8 ltr:left-[31px] rtl:right-[31px] w-[2px] bg-gray-200 dark:bg-gray-800 z-0"></div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
                         <!-- Step 1 -->
-                        <div class="flex flex-col group relative pl-24 md:pl-0">
-                            <div class="absolute left-0 top-0 md:relative md:mb-6 bg-tcm-ivory dark:bg-tcm-dark pr-8 py-2 md:py-0 inline-block w-max">
-                                <span class="text-6xl font-display font-semibold text-tcm-terracotta dark:text-tcm-sage">01</span>
+                        <div class="flex flex-row md:flex-col items-start gap-4 sm:gap-6 md:gap-0 group relative">
+                            <div class="flex-shrink-0 w-16 sm:w-20 md:w-auto text-center md:text-left relative z-10 bg-tcm-ivory dark:bg-tcm-dark py-1 md:py-0 md:pr-8 md:mb-6">
+                                <span class="text-4xl sm:text-5xl md:text-6xl font-display font-semibold text-tcm-terracotta dark:text-tcm-sage leading-none block">01</span>
                             </div>
-                            <div class="md:mt-0 mt-2">
-                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b-2 border-tcm-terracotta pb-2 inline-block">Initial Consultation</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light">Detailed discussion of health history, symptoms, and wellness goals.</p>
+                            <div class="flex-1 min-w-0 pt-0.5 md:pt-0">
+                                <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 border-b-2 border-tcm-terracotta pb-1 inline-block">Initial Consultation</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">Detailed discussion of health history, symptoms, and wellness goals.</p>
                             </div>
                         </div>
 
                         <!-- Step 2 -->
-                        <div class="flex flex-col group relative pl-24 md:pl-0">
-                            <div class="absolute left-0 top-0 md:relative md:mb-6 bg-tcm-ivory dark:bg-tcm-dark pr-8 py-2 md:py-0 inline-block w-max">
-                                <span class="text-6xl font-display font-semibold text-tcm-sage dark:text-tcm-terracotta">02</span>
+                        <div class="flex flex-row md:flex-col items-start gap-4 sm:gap-6 md:gap-0 group relative">
+                            <div class="flex-shrink-0 w-16 sm:w-20 md:w-auto text-center md:text-left relative z-10 bg-tcm-ivory dark:bg-tcm-dark py-1 md:py-0 md:pr-8 md:mb-6">
+                                <span class="text-4xl sm:text-5xl md:text-6xl font-display font-semibold text-tcm-sage dark:text-tcm-terracotta leading-none block">02</span>
                             </div>
-                            <div class="md:mt-0 mt-2">
-                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b-2 border-tcm-sage pb-2 inline-block">Diagnosis</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light">Traditional tongue and pulse assessment to identify underlying patterns.</p>
+                            <div class="flex-1 min-w-0 pt-0.5 md:pt-0">
+                                <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 border-b-2 border-tcm-sage pb-1 inline-block">Diagnosis</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">Traditional tongue and pulse assessment to identify underlying patterns.</p>
                             </div>
                         </div>
 
                         <!-- Step 3 -->
-                        <div class="flex flex-col group relative pl-24 md:pl-0">
-                            <div class="absolute left-0 top-0 md:relative md:mb-6 bg-tcm-ivory dark:bg-tcm-dark pr-8 py-2 md:py-0 inline-block w-max">
-                                <span class="text-6xl font-display font-semibold text-tcm-charcoal dark:text-white">03</span>
+                        <div class="flex flex-row md:flex-col items-start gap-4 sm:gap-6 md:gap-0 group relative">
+                            <div class="flex-shrink-0 w-16 sm:w-20 md:w-auto text-center md:text-left relative z-10 bg-tcm-ivory dark:bg-tcm-dark py-1 md:py-0 md:pr-8 md:mb-6">
+                                <span class="text-4xl sm:text-5xl md:text-6xl font-display font-semibold text-tcm-charcoal dark:text-white leading-none block">03</span>
                             </div>
-                            <div class="md:mt-0 mt-2">
-                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b-2 border-gray-800 dark:border-white pb-2 inline-block">Treatment Plan</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light">Execution of personalized acupuncture, cupping, or herbal therapies.</p>
+                            <div class="flex-1 min-w-0 pt-0.5 md:pt-0">
+                                <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 border-b-2 border-tcm-charcoal dark:border-tcm-sand pb-1 inline-block">Treatment Plan</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">Execution of personalized acupuncture, cupping, or herbal therapies.</p>
                             </div>
                         </div>
 
                         <!-- Step 4 -->
-                        <div class="flex flex-col group relative pl-24 md:pl-0">
-                            <div class="absolute left-0 top-0 md:relative md:mb-6 bg-tcm-ivory dark:bg-tcm-dark pr-8 py-2 md:py-0 inline-block w-max">
-                                <span class="text-6xl font-display font-semibold text-tcm-terracotta dark:text-tcm-sage">04</span>
+                        <div class="flex flex-row md:flex-col items-start gap-4 sm:gap-6 md:gap-0 group relative">
+                            <div class="flex-shrink-0 w-16 sm:w-20 md:w-auto text-center md:text-left relative z-10 bg-tcm-ivory dark:bg-tcm-dark py-1 md:py-0 md:pr-8 md:mb-6">
+                                <span class="text-4xl sm:text-5xl md:text-6xl font-display font-semibold text-tcm-terracotta dark:text-tcm-sage leading-none block">04</span>
                             </div>
-                            <div class="md:mt-0 mt-2">
-                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 border-b-2 border-tcm-terracotta pb-2 inline-block">Ongoing Support</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light">Continuous monitoring and adjustments via your patient dashboard.</p>
+                            <div class="flex-1 min-w-0 pt-0.5 md:pt-0">
+                                <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 border-b-2 border-tcm-terracotta pb-1 inline-block">Ongoing Support</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">Continuous monitoring and adjustments via your patient dashboard.</p>
                             </div>
                         </div>
                     </div>
@@ -522,8 +549,7 @@
                     <span class="text-sm uppercase tracking-widest text-tcm-sage">— Sarah Jenkins, Patient</span>
                 </p>
                 <a href="contact.html"
-                    class="btn-primary bg-tcm-sand text-tcm-charcoal hover:bg-white focus:ring-white">Schedule an
-                    Assessment</a>
+                    class="btn-primary whitespace-nowrap bg-tcm-sand text-tcm-charcoal hover:bg-white focus:ring-white">Schedule an Assessment</a>
             </div>
         </section>
     </main>

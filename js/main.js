@@ -1,37 +1,91 @@
+// Immediate execution before DOMContentLoaded to prevent theme and dir flash
+(function () {
+    try {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        const savedDir = localStorage.getItem('dir') || 'ltr';
+        document.documentElement.setAttribute('dir', savedDir);
+    } catch (e) {
+        console.warn('Theme/RTL storage initialization error:', e);
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Theme Toggle
-    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Check for saved theme or system preference
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        htmlElement.classList.add('dark');
+    // 1. Theme Toggle
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+
+    function updateThemeUI() {
+        const isDark = htmlElement.classList.contains('dark');
+        themeToggleBtns.forEach(btn => {
+            btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        });
     }
 
+    // Sync theme on load
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        htmlElement.classList.add('dark');
+    } else {
+        htmlElement.classList.remove('dark');
+    }
+    updateThemeUI();
+
     themeToggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             htmlElement.classList.toggle('dark');
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
+            const isDark = htmlElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeUI();
         });
     });
 
     // 2. RTL Toggle
     const rtlToggleBtns = document.querySelectorAll('.rtl-toggle');
-    
-    // Check saved direction
+
+    function updateRtlUI(dir) {
+        rtlToggleBtns.forEach(btn => {
+            const span = btn.querySelector('span');
+            const labelText = dir === 'rtl' ? 'LTR' : 'RTL';
+            if (span) {
+                span.textContent = labelText;
+            } else {
+                btn.textContent = labelText;
+            }
+            btn.setAttribute('aria-label', dir === 'rtl' ? 'Switch to LTR layout' : 'Switch to RTL layout');
+            btn.setAttribute('title', dir === 'rtl' ? 'Switch to LTR layout' : 'Switch to RTL layout');
+
+            if (dir === 'rtl') {
+                btn.classList.add('active-rtl', 'bg-tcm-terracotta', 'text-white', 'border-tcm-terracotta');
+                btn.classList.remove('bg-gray-50', 'bg-white', 'text-tcm-charcoal');
+            } else {
+                btn.classList.remove('active-rtl', 'bg-tcm-terracotta', 'text-white', 'border-tcm-terracotta');
+            }
+        });
+    }
+
     const savedDir = localStorage.getItem('dir') || 'ltr';
     htmlElement.setAttribute('dir', savedDir);
+    updateRtlUI(savedDir);
 
     rtlToggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const currentDir = htmlElement.getAttribute('dir');
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentDir = htmlElement.getAttribute('dir') || 'ltr';
             const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
             htmlElement.setAttribute('dir', newDir);
             localStorage.setItem('dir', newDir);
+            updateRtlUI(newDir);
         });
     });
 
@@ -39,18 +93,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            // Toggle hamburger to close icon logic can go here
-        });
+    function toggleMobileMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+            menu.classList.toggle('hidden');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (btn) {
+                const isExpanded = !menu.classList.contains('hidden');
+                btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            }
+        }
+    }
 
-        // Close menu on link click
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuBtn.addEventListener('touchstart', toggleMobileMenu, { passive: false });
+    }
+
+    // Delegated fallback in case button is re-rendered or clicked on inner SVG
+    document.addEventListener('click', (e) => {
+        const toggleBtn = e.target.closest('#mobile-menu-btn');
+        if (toggleBtn) {
+            toggleMobileMenu(e);
+            return;
+        }
+
+        // Close menu if clicking outside when open
+        const menu = document.getElementById('mobile-menu');
+        if (menu && !menu.classList.contains('hidden')) {
+            if (!menu.contains(e.target)) {
+                menu.classList.add('hidden');
+                const btn = document.getElementById('mobile-menu-btn');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+
+    if (mobileMenu) {
+        // Close menu on navigation link click
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
                 mobileMenu.classList.add('hidden');
-            });
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 
@@ -92,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Form Validation (Generic simple logic for pages with forms)
+    // 6. Form Validation
     const forms = document.querySelectorAll('form[data-validate]');
     forms.forEach(form => {
         form.addEventListener('submit', (e) => {
@@ -104,25 +193,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!field.value.trim()) {
                     isValid = false;
                     field.classList.add('border-red-500');
-                    // Add error message logic
                 } else {
                     field.classList.remove('border-red-500');
                 }
             });
 
             if (isValid) {
-                // Mock submit success
                 const btn = form.querySelector('button[type="submit"]');
-                const origText = btn.innerHTML;
-                btn.innerHTML = 'Success!';
-                btn.classList.add('bg-green-600');
-                setTimeout(() => {
-                    btn.innerHTML = origText;
-                    btn.classList.remove('bg-green-600');
-                    form.reset();
-                }, 3000);
+                if (btn) {
+                    const origText = btn.innerHTML;
+                    btn.innerHTML = 'Success!';
+                    btn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        btn.innerHTML = origText;
+                        btn.classList.remove('bg-green-600');
+                        form.reset();
+                    }, 3000);
+                }
             }
         });
+    });
+
     // 7. Interactive Treatment Pathway Switcher (Home Page 2)
     const pathwayTabs = document.querySelectorAll('#pathway-tabs .pathway-btn');
     const pathwayTitle = document.getElementById('pathway-title');
@@ -164,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = pathwayData[pathwayKey];
                 if (!data) return;
 
-                // Update active button state
                 pathwayTabs.forEach(t => {
                     t.classList.remove('active', 'bg-tcm-terracotta', 'text-white', 'shadow-sm');
                     t.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
@@ -173,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tab.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
                 tab.classList.add('active', 'bg-tcm-terracotta', 'text-white', 'shadow-sm');
 
-                // Update content with subtle animation
                 const contentBox = document.getElementById('pathway-content');
                 if (contentBox) {
                     contentBox.classList.add('opacity-50');

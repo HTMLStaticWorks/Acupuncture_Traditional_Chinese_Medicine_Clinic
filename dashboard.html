@@ -7,6 +7,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
+        <!-- Theme & Direction Early Sync -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                var dir = localStorage.getItem('dir');
+                if (dir) {
+                    document.documentElement.setAttribute('dir', dir);
+                }
+            } catch (e) {}
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', theme: { extend: { colors: { tcm: { charcoal: '#2D3748', dark: '#1A202C', ivory: '#FAF9F6', sand: '#F5F0E6', terracotta: '#C87968', sage: '#9CAAA0', } }, fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'], } } } }
@@ -31,17 +49,17 @@
         }
         @layer components {
           .btn-primary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-tcm-terracotta hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-terracotta transition-colors duration-200 whitespace-nowrap;
           }
           .btn-secondary {
-            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark;
+            @apply inline-flex items-center justify-center px-6 py-3 border border-tcm-charcoal text-base font-medium rounded-md text-tcm-charcoal bg-transparent hover:bg-tcm-charcoal hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tcm-charcoal transition-colors duration-200 dark:border-tcm-sand dark:text-tcm-sand dark:hover:bg-tcm-sand dark:hover:text-tcm-dark whitespace-nowrap;
           }
           .nav-link {
             @apply text-base font-medium text-tcm-charcoal hover:text-tcm-terracotta transition-colors duration-200 dark:text-tcm-sand dark:hover:text-tcm-sage relative;
           }
           .nav-link.active::after {
             content: '';
-            @apply absolute bottom-[-4px] ltr:left-0 rtl:right-0 w-full h-[2px] bg-tcm-terracotta dark:bg-tcm-sage rounded-full;
+            @apply absolute bottom-[-4px] inset-x-0 h-[2px] bg-tcm-terracotta dark:bg-tcm-sage rounded-full;
           }
           .card {
             @apply bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-700;
@@ -265,7 +283,7 @@
                                     <p class="font-medium text-lg text-tcm-charcoal dark:text-tcm-sand">Acupuncture Follow-up</p>
                                     <p class="text-gray-500 text-sm"><span class="whitespace-nowrap font-medium text-tcm-charcoal dark:text-gray-300">Dr. Lin Wei</span> • Room 3</p>
                                 </div>
-                                <div class="ltr:text-left rtl:ltr:text-right rtl:text-left sm:ltr:text-right rtl:text-left">
+                                <div class="text-left sm:text-right rtl:text-right sm:rtl:text-left">
                                     <p class="font-medium text-tcm-terracotta">Tomorrow, 10:00 AM</p>
                                     <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full mt-1">Confirmed</span>
                                 </div>
@@ -296,7 +314,7 @@
                         <div class="card p-6 lg:col-span-3">
                             <h2 class="text-xl font-display mb-4 border-b border-gray-100 dark:border-gray-700 pb-2">Recent Session Notes</h2>
                             <div class="space-y-6">
-                                <div class="ltr:border-l-2 rtl:border-r-2 border-tcm-sage ltr:pl-4 rtl:ltr:pr-4 rtl:pl-4">
+                                <div class="border-l-2 rtl:border-l-0 rtl:border-r-2 border-tcm-sage pl-4 rtl:pl-0 rtl:pr-4">
                                     <div class="flex justify-between items-center mb-1">
                                         <p class="text-sm text-gray-500 font-medium">Oct 12, 2026 • Acupuncture</p>
                                         <a href="#" class="text-xs text-tcm-terracotta hover:underline">View Notes</a>
@@ -434,7 +452,7 @@
                             <p class="font-medium text-tcm-sage">Current Balance: $0.00</p>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full ltr:text-left rtl:ltr:text-right rtl:text-left border-collapse min-w-[600px]">
+                            <table class="w-full text-left rtl:text-right border-collapse min-w-[600px]">
                                 <thead>
                                     <tr class="text-gray-500 dark:text-gray-400 text-sm border-b border-gray-200 dark:border-gray-700">
                                         <th class="pb-3 ltr:pr-4 rtl:pl-4 font-medium">Date</th>

@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
+/* Global Smooth Theme Transitions */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header, footer, .card, nav, aside {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -15,9 +29,12 @@
   background-color: #9CAAA0; /* tcm-sage */
 }
 
-/* Dark mode scrollbar support (if needed natively, otherwise tailwind handles it) */
+/* Dark mode scrollbar */
 html.dark ::-webkit-scrollbar-thumb {
   background-color: #4B5563; /* gray-600 */
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #6B7280;
 }
 
 /* Animations */
@@ -34,12 +51,233 @@ html.dark ::-webkit-scrollbar-thumb {
   }
 }
 
-/* Brighten paragraph text in dark mode */
+/* Dark mode text polish */
 html.dark p.dark\:text-gray-400 {
   color: #D1D5DB; /* gray-300 */
 }
 
-/* Brighten footer links in dark mode */
 html.dark footer a.text-gray-500 {
   color: #9CA3AF; /* gray-400 */
+}
+
+/* Ensure CTA buttons strictly keep text on a single line across mobile, tablet, and desktop */
+.btn-primary,
+.btn-secondary,
+a.btn-primary,
+a.btn-secondary,
+button.btn-primary,
+button.btn-secondary,
+[class*="btn-primary"],
+[class*="btn-secondary"] {
+  white-space: nowrap !important;
+  text-align: center;
+  word-break: keep-all !important;
+  word-wrap: normal !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .btn-primary,
+  .btn-secondary,
+  a.btn-primary,
+  a.btn-secondary,
+  button.btn-primary,
+  button.btn-secondary,
+  [class*="btn-primary"],
+  [class*="btn-secondary"] {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    word-wrap: normal !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    font-size: 0.9375rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-secondary,
+  a.btn-primary,
+  a.btn-secondary,
+  button.btn-primary,
+  button.btn-secondary,
+  [class*="btn-primary"],
+  [class*="btn-secondary"] {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    word-wrap: normal !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Hero CTA button length synchronization on mobile */
+@media (max-width: 639px) {
+  .hero-cta-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary,
+  .hero-cta-group > a.btn-primary,
+  .hero-cta-group > a.btn-secondary {
+    width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Treatment Pathway filter tabs equalized width on mobile */
+  #pathway-tabs {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #pathway-tabs .pathway-btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+  }
+}
+.theme-toggle,
+.rtl-toggle {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.theme-toggle:hover,
+.rtl-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle:active,
+.rtl-toggle:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.rtl-toggle.active-rtl {
+  background-color: #C87968 !important;
+  color: #ffffff !important;
+  border-color: #C87968 !important;
+  box-shadow: 0 1px 3px rgba(200, 121, 104, 0.4);
+}
+
+/* ==========================================================================
+   RTL (Right-to-Left) Comprehensive Support
+   ========================================================================== */
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Form inputs & text fields in RTL */
+html[dir="rtl"] input:not([type="checkbox"]):not([type="radio"]),
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Floating Scroll-to-Top in RTL */
+html[dir="rtl"] #scroll-to-top {
+  right: auto !important;
+  left: 2rem !important;
+}
+
+/* Directional Arrow / Chevron SVGs flip in RTL */
+html[dir="rtl"] .rtl-flip,
+html[dir="rtl"] [data-rtl-flip="true"],
+html[dir="rtl"] svg.arrow-icon,
+html[dir="rtl"] a.group:hover svg.group-hover\:translate-x-1,
+html[dir="rtl"] button.group:hover svg.group-hover\:translate-x-1 {
+  transform: scaleX(-1);
+}
+
+/* Top Controls in RTL (Auth pages) */
+html[dir="rtl"] .fixed.top-4.right-4 {
+  right: auto !important;
+  left: 1rem !important;
+}
+
+/* Mobile Drawer support for RTL */
+html[dir="rtl"] #dashboard-sidebar-mobile {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* LTR and RTL utility class mappings */
+[dir="ltr"] .ltr\:lg\:right-0 { right: 0; left: auto; }
+[dir="rtl"] .rtl\:lg\:left-0 { left: 0; right: auto; }
+
+[dir="ltr"] .ltr\:-right-4 { right: -1rem; left: auto; }
+[dir="rtl"] .rtl\:-left-4 { left: -1rem; right: auto; }
+
+[dir="ltr"] .ltr\:-left-6 { left: -1.5rem; right: auto; }
+[dir="rtl"] .rtl\:-right-6 { right: -1.5rem; left: auto; }
+
+[dir="ltr"] .ltr\:-left-\[7px\] { left: -7px; right: auto; }
+[dir="rtl"] .rtl\:-right-\[7px\] { right: -7px; left: auto; }
+
+[dir="ltr"] .ltr\:left-\[31px\] { left: 31px; right: auto; }
+[dir="rtl"] .rtl\:right-\[31px\] { right: 31px; left: auto; }
+
+[dir="ltr"] .ltr\:border-r { border-right-width: 1px; border-left-width: 0; }
+[dir="rtl"] .rtl\:border-l { border-left-width: 1px; border-right-width: 0; }
+
+[dir="ltr"] .ltr\:border-l-2 { border-left-width: 2px; border-right-width: 0; }
+[dir="rtl"] .rtl\:border-r-2 { border-right-width: 2px; border-left-width: 0; }
+
+[dir="ltr"] .ltr\:pl-4 { padding-left: 1rem; padding-right: 0; }
+[dir="rtl"] .rtl\:pr-4 { padding-right: 1rem; padding-left: 0; }
+
+[dir="ltr"] .ltr\:pl-5 { padding-left: 1.25rem; padding-right: 0; }
+[dir="rtl"] .rtl\:pr-5 { padding-right: 1.25rem; padding-left: 0; }
+
+[dir="ltr"] .ltr\:pl-6 { padding-left: 1.5rem; padding-right: 0; }
+[dir="rtl"] .rtl\:pr-6 { padding-right: 1.5rem; padding-left: 0; }
+
+[dir="ltr"] .ltr\:pr-4 { padding-right: 1rem; padding-left: 0; }
+[dir="rtl"] .rtl\:pl-4 { padding-left: 1rem; padding-right: 0; }
+
+[dir="ltr"] .ltr\:ml-2 { margin-left: 0.5rem; margin-right: 0; }
+[dir="rtl"] .rtl\:mr-2 { margin-right: 0.5rem; margin-left: 0; }
+
+[dir="ltr"] .ltr\:text-left { text-align: left; }
+[dir="rtl"] .rtl\:text-right { text-align: right; }
+
+[dir="ltr"] .ltr\:text-right { text-align: right; }
+[dir="rtl"] .rtl\:text-left { text-align: left; }
+
+[dir="ltr"] .ltr\:-translate-x-full { transform: translateX(-100%); }
+[dir="rtl"] .rtl\:translate-x-full { transform: translateX(100%); }
+
+/* In RTL, natural table cell alignment */
+html[dir="rtl"] th,
+html[dir="rtl"] td {
+  text-align: right;
+}
+html[dir="rtl"] th.ltr\:text-right,
+html[dir="rtl"] td.ltr\:text-right,
+html[dir="rtl"] .rtl\:text-left {
+  text-align: left !important;
 }
